@@ -1,6 +1,8 @@
 ## 有关内核赛评测姬的执行流程
 
-2021/04/20 程乾宇 KErnelOS Group
+v0.1: 2021/04/20 程乾宇 KErnelOS Group
+
+v0.2: 2021/05/04 程乾宇 KErnelOS Group
 
 - 首先：评测机只编译操作系统内核，不编译用户程序。测试时只考虑串口输出结果的正确性。编译生成的内核固件文件名应为：k210.bin。项目中应附加Makefile用于编译构建。评测机测试时执行的命令为：
 
@@ -23,11 +25,11 @@
   umount /mnt
   ```
 
-- 执行测试的过程也是写在操作系统内核中的。内核进程将用户程序拆解，并由此创建用户进程，执行并输出结果。思路参见[rCore: 解析 ELF 文件并创建线程](https://rcore-os.github.io/rCore-Tutorial-deploy/docs/lab-6/guide/part-3.html)。
+- 执行测试的过程也是写在操作系统内核中的。内核进程将用户程序拆解，并由此创建用户进程，执行并输出结果。思路参见[rCore: 通过 sys_exec 加载并执行应用](https://rcore-os.github.io/rCore-Tutorial-Book-v3/chapter7/3using-easy-fs-in-kernel.html#sys-exec)。
 
 - 用户程序可以在本机进行编译测试，为C程序。需要下载配置[专供K210的GCC交叉编译工具链](https://github.com/oscomp/testsuits-for-oskernel/blob/main/riscv-syscalls-testing/res/kendryte-toolchain-ubuntu-amd64-8.2.0-20190409.tar.xz)到PATH环境变量。编译方法见[此处](https://github.com/oscomp/testsuits-for-oskernel/blob/main/riscv-syscalls-testing/README.md)。
 
-- （综上所述，赛方完全可以提供一份预编译用户程序镜像供虚拟机上测试用）
+- （综上所述，赛方完全可以提供一份预编译用户程序镜像供参赛者本地测试用）
 
 - 评测机Rust和C编译环境为:
 
