@@ -139,9 +139,9 @@ impl PageTable{
   fn find_pte_create(&mut self, vpn: VirtPageNum) -> Option<&mut PageTableEntry>;	// 查找页表项，自动创建
 	pub fn map(&mut self, vpn: VirtPageNum, ppn: PhysPageNum, flags: PTEFlags); //创建页表映射
 	pub fn unmap(&mut self, vpn: VirtPageNum); //删除页表映射
-  
-	fn find_pte_no_create(&self, vpn: VirtPageNum) -> Option<&PageTableEntry>; // 查找页表项，不创建
-	pub fn translate(&self, vpn: VirtPageNum) -> Option<PageTableEntry> // 翻译返回对应页表项
+  fn find_pte_create(&self, vpn: VirtPageNum) -> Option<&mut PageTableEntry>; // 查找最后一层页表项，找不到自动创建
+	fn find_pte_no_create(&self, vpn: VirtPageNum) -> Option<&PageTableEntry>; // 查找最后一层页表项，不创建
+	pub fn translate(&self, vpn: VirtPageNum) -> Option<PageTableEntry> // 翻译返回对应最后一层页表项
   pub fn token(&self) -> usize; // 页表对应satp值
 }
 ```
@@ -162,7 +162,7 @@ impl PageTable{
   pub fn from_token(satp: usize) -> Self // 根据satp寄存器设置确定页表所在物理页号
 	pub fn map(&mut self, vpn: VirtPageNum, ppn: PhysPageNum, flags: PTEFlags); //创建页表映射
 	pub fn unmap(&mut self, vpn: VirtPageNum); //删除页表映射
-	pub fn translate(&self, vpn: VirtPageNum) -> Option<PageTableEntry> // 翻译返回对应页表项
+	pub fn translate(&self, vpn: VirtPageNum) -> Option<PageTableEntry> // 翻译返回对应最后一层页表项
   pub fn token(&self) -> usize; // 页表对应satp值
 }
 ```
