@@ -5,3 +5,5 @@
 An UNIX-like, multicore-supported teaching operating system developed by UESTCer.
 </p>
 
+[![](https://img.shields.io/github/license/ElecKErnelGroup/KErnelOS)](https://github.com/ElecKErnelGroup/KErnelOS/blob/main/LICENSE)
+[![](https://img.shields.io/github/v/release/ElecKErnelGroup/KErnelOS?include_prereleases)](https://github.com/ElecKErnelGroup/KErnelOS/releases)
